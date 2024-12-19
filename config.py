@@ -14,11 +14,11 @@ API_HASH = getenv("API_HASH")
 # ------------------------------------------------------
 BOT_TOKEN = getenv("BOT_TOKEN")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","ll_hunter_lll")
+OWNER_USERNAME = getenv("OWNER_USERNAME","Sigma_owner_ll")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "riyaXmusicbot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "SIGMA_MUSICC_BOT")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME" , "RIYA MUSIC")
+BOT_NAME = getenv("BOT_NAME" , "SIGMA MUSIC")
 # ---------------------------------------------------------
 ASSUSERNAME = getenv("ASSUSERNAME" , "itz_m3_riya")
 # ---------------------------------------------------------
@@ -53,7 +53,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 # ----------------------------------------------------------------
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/Ksdofficial8/RIYA_MUSIC",
+    "https://github.com/Ksdofficial8/SIGAM-MUSIC",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
@@ -67,7 +67,7 @@ GIT_TOKEN = getenv(
 
 # ------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Ksd_bot_network")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/SIGMA_CHAT_SUPPORT")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/team_riya_support")
 # ------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
