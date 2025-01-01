@@ -70,11 +70,11 @@ HELP_X = """```
 V ɪ s ɪ ᴛ - [ʜᴇʀᴇ](https://t.me/RIYA_NETWORK)"""
 
 # Callback query handler
-@bot.on_callback_query(filters.regex("ISTKHAR_ALAM"))
+@app.on_callback_query(filters.regex("ISTKHAR_ALAM"))
 async def helper_cb(client, CallbackQuery):
     await CallbackQuery.edit_message_text(HELP_X, reply_markup=ABUTTON)
 
-@bot.on_callback_query(filters.regex("MUSARRAT"))
+@app.on_callback_query(filters.regex("MUSARRAT"))
 async def helper_cb(client, CallbackQuery):
     await CallbackQuery.edit_message_text(HELP_C, reply_markup=CBUTTON)
 
