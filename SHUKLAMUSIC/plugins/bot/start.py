@@ -68,24 +68,23 @@ async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
-        if name[0:4] == "help":
+        if name.startswith("help"):
             keyboard = help_pannel(_)
             return await message.reply_photo(
                 random.choice(YUMI_PICS),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
-                reply_markup=keyboard,
+                reply_markup=InlineKeyboardMarkup(keyboard),  # यहाँ सुधार किया गया है
             )
-        if name[0:3] == "sud":
+        elif name.startswith("sud"):
             await sudoers_list(client=client, message=message, _=_)
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"✦ {message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>✦ ᴜsᴇʀ ɪᴅ ➠</b> <code>{message.from_user.id}</code>\n<b>✦ ᴜsᴇʀɴᴀᴍᴇ ➠</b> @{message.from_user.username}",
+                    text=f"✦ {message.from_user.mention} ने बॉट शुरू किया <b>sudo सूची</b> देखने के लिए।\n\n<b>✦ उपयोगकर्ता आईडी ➠</b> <code>{message.from_user.id}</code>\n<b>✦ उपयोगकर्ता नाम ➠</b> @{message.from_user.username}",
                 )
-            return
-        if name[0:3] == "inf":
+        elif name.startswith("inf"):
             m = await message.reply_text("🔎")
-            query = (str(name)).replace("info_", "", 1)
+            query = name.replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
             for result in (await results.next())["result"]:
@@ -100,25 +99,23 @@ async def start_pm(client, message: Message, _):
             searched_text = _["start_6"].format(
                 title, duration, views, published, channellink, channel, app.mention
             )
-            key = InlineKeyboardMarkup(
+            key = [
                 [
-                    [
-                        InlineKeyboardButton(text=_["S_B_8"], url=link),
-                        InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
-                    ],
-                ]
-            )
+                    InlineKeyboardButton(text=_["S_B_8"], url=link),
+                    InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
+                ],
+            ]
             await m.delete()
             await app.send_photo(
                 chat_id=message.chat.id,
                 photo=thumbnail,
                 caption=searched_text,
-                reply_markup=key,
+                reply_markup=InlineKeyboardMarkup(key),  # यहाँ सुधार किया गया है
             )
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"✦ {message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n✦ <b>ᴜsᴇʀ ɪᴅ ➠</b> <code>{message.from_user.id}</code>\n✦ <b>ᴜsᴇʀɴᴀᴍᴇ ➠</b> @{message.from_user.username}",
+                    text=f"✦ {message.from_user.mention} ने बॉट शुरू किया <b>ट्रैक जानकारी</b> देखने के लिए।\n\n✦ <b>उपयोगकर्ता आईडी ➠</b> <code>{message.from_user.id}</code>\n✦ <b>उपयोगकर्ता नाम ➠</b> @{message.from_user.username}",
                 )
     else:
         out = private_panel(_)
@@ -127,13 +124,15 @@ async def start_pm(client, message: Message, _):
         UP, CPU, RAM, DISK = await bot_sys_stats()
         await message.reply_photo(
             random.choice(YUMI_PICS),
-            caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM,served_users,served_chats),
-            reply_markup=InlineKeyboardMarkup(out),
+            caption=_["start_2"].format(
+                message.from_user.mention, app.mention, UP, DISK, CPU, RAM, served_users, served_chats
+            ),
+            reply_markup=InlineKeyboardMarkup(out),  # यहाँ सुधार किया गया है
         )
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
-                text=f"✦ {message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n✦ <b>ᴜsᴇʀ ɪᴅ ➠</b> <code>{message.from_user.id}</code>\n✦ <b>ᴜsᴇʀɴᴀᴍᴇ ➠</b> @{message.from_user.username}",
+                text=f"✦ {message.from_user.mention} ने बॉट शुरू किया।\n\n✦ <b>उपयोगकर्ता आईडी ➠</b> <code>{message.from_user.id}</code>\n✦ <b>उपयोगकर्ता नाम ➠</b> @{message.from_user.username}",
             )
 
 
